@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { useToken } from './APIs/getAccessToken';
 import { getArtistId } from './APIs/getArtistID';
 import { ArtistAlbums } from './Components/ArtistAlbums';
+import { NupupNavBar } from './Components/NupupNavBar';
 
 function App() {
   const [searchInput, setSearchInput] = useState("");
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <div className="App">
+      <NupupNavBar />
       <h1>{searchInput}</h1>
       <Container>
           <FormControl
