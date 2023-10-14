@@ -1,16 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, InputGroup, FormControl, Button, Row, Card } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
-import { ArtistCard } from './Components/ArtistCard';
-import { useToken } from './Helpers/getAccessToken';
-import { getArtistId } from './Helpers/getArtistID';
+import { useToken } from './APIs/getAccessToken';
+import { getArtistId } from './APIs/getArtistID';
+import { ArtistAlbums } from './Components/ArtistAlbums';
 
 function App() {
   const [searchInput, setSearchInput] = useState("");
-  const accessToken = useToken()
+  const [artistId, setArtistId] = useState("");
+
+  const accessToken = useToken() as string;
+
 
   useEffect (()=> {
     
@@ -20,7 +22,6 @@ function App() {
     <div className="App">
       <h1>{searchInput}</h1>
       <Container>
-        <InputGroup className='mb-3' size = 'lg'> 
           <FormControl
             placeholder='Search for artist'
             type = 'input'
@@ -34,12 +35,11 @@ function App() {
               }
             }
           />
-        </InputGroup>
-        <Button variant="success" onClick={() => { getArtistId(searchInput) }}>
+        <Button variant="success" onClick={() => { getArtistId(searchInput, accessToken).then((result)=> setArtistId(result))}}>
           Enter
         </Button>
       </Container>
-      <ArtistCard/>
+      <ArtistAlbums artistId={artistId} accessToken={accessToken} />
     </div>
   );
 }
