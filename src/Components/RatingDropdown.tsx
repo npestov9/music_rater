@@ -13,6 +13,7 @@ export const RatingDropdown = ({ albumId }:RatingDropdownProps) => {
     const [inputValue, setInputValue] = useState("");
     const options = [];
     const [user] = useAuthState(auth);
+    const [loading, setLoading] = useState(false);
 
     for (let i = 10; i >= 1; i--) {
         options.push(
@@ -34,7 +35,13 @@ export const RatingDropdown = ({ albumId }:RatingDropdownProps) => {
     }
 
     const submitBtnClicked = () => {
-        sendRatingToDb(parseInt(inputValue),albumId, user as User);
+        setLoading(true);
+
+        sendRatingToDb(parseInt(inputValue), albumId, user as User);
+        
+        setTimeout(() => {
+            setLoading(false);
+        }, 2000);
     }
 
     return (
@@ -55,7 +62,7 @@ export const RatingDropdown = ({ albumId }:RatingDropdownProps) => {
             onChange= {handleOnInputChange}
             />
 
-            <Button onClick={submitBtnClicked}>Submit</Button>
+            <Button disabled = {loading} onClick={submitBtnClicked}>Submit</Button>
           </InputGroup>
     </>
     );
