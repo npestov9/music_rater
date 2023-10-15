@@ -35,13 +35,16 @@ export const RatingDropdown = ({ albumId }:RatingDropdownProps) => {
     }
 
     const submitBtnClicked = () => {
-        setLoading(true);
+        if ((/^[1-9]*$/.test(inputValue) && parseInt(inputValue) < 11)){
+            setLoading(true);
 
-        sendRatingToDb(parseInt(inputValue), albumId, user as User);
-        
-        setTimeout(() => {
-            setLoading(false);
-        }, 2000);
+            sendRatingToDb(parseInt(inputValue), albumId, user as User);
+            
+            setTimeout(() => {
+                setLoading(false);
+            }, 2000);
+        }
+
     }
 
     return (
@@ -62,7 +65,7 @@ export const RatingDropdown = ({ albumId }:RatingDropdownProps) => {
             onChange= {handleOnInputChange}
             />
 
-            <Button disabled = {loading} onClick={submitBtnClicked}>Submit</Button>
+            <Button variant = {loading? "success":"primary"} disabled = {loading} onClick={submitBtnClicked}>Submit</Button>
           </InputGroup>
     </>
     );
