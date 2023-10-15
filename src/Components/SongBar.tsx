@@ -18,11 +18,12 @@ const listItemStyle = {
 
 type Props = {
   name: string;
+  artist: string;
   url: string;
   ms: number
 };
 
-export const SongBar = ({ name, url, ms }: Props) => {
+export const SongBar = ({ name,artist, url, ms }: Props) => {
 
     const totalSeconds = Math.floor(ms / 1000);
     const minutes = Math.floor(totalSeconds / 60);
@@ -33,7 +34,7 @@ export const SongBar = ({ name, url, ms }: Props) => {
             
             {name}   -  {minutes}:{seconds}
             <img src={spotifyIcon} alt="Icon" style={iconsStyle} onClick={() => { window.open(url, '_blank'); }} />
-            <img src={youtubeIcon} alt="Icon" style={iconsStyle} onClick={() => { goToYtLink(name)}} />
+            <img src={youtubeIcon} alt="Icon" style={iconsStyle} onClick={() => { goToYtLink(name, artist)}} />
         </ListGroup.Item>
     </>
 }

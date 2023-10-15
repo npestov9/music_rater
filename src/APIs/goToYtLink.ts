@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-export const goToYtLink= (songSearchTerm: string) => {
+export const goToYtLink= (songSearchTerm: string, artist: string) => {
     const API_KEY = 'AIzaSyDuPb6_V5Wna72peloEWDt-F54JuDWqDqs'; // Replace with your actual API key
 
     const handleSearch = async () => {
@@ -9,7 +9,7 @@ export const goToYtLink= (songSearchTerm: string) => {
         const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
             params: {
             key: API_KEY,
-            q: songSearchTerm,
+            q: songSearchTerm + " " + artist,
             part: 'snippet',
             maxResults: 1,
             type: 'video',

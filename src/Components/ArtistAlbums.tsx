@@ -11,6 +11,7 @@ type Props = {
 type Album = {
   name: string;
   images: Image[];
+  id: string
 };
 
 type Image = {
@@ -42,7 +43,7 @@ export const ArtistAlbums = ({ artistId }: Props) => {
             <Row className='mx-2 row row-cols-4'>{
             albums.map((album) => {
                 return (
-                    <ArtistCard title={album.name} img={album.images[0].url} />
+                    <ArtistCard title={album.name} img={album.images[0].url} albumId={album.id} />
                 )
             })}
             </Row>

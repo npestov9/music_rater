@@ -13,6 +13,7 @@ type Song = {
 };
 
 type AlbumInfo = {
+name: string,
   images: { url: string }[];
   release_date: string;
   artists: { name: string }[];
@@ -23,7 +24,7 @@ export const AlbumDisplay = ( ) => {
 
     const { albumId } = useParams();
     const accessToken = useAPIContext();
-    const [albumInfo, setAlbumInfo] = useState<AlbumInfo>({images: [{ url: "" }],release_date: "",artists: [{ name: "" }]});
+    const [albumInfo, setAlbumInfo] = useState<AlbumInfo>({name:"",images: [{ url: "" }],release_date: "",artists: [{ name: "" }]});
     const [albumSongs, setAllSongs] = useState<Song[]>([]);
 
     useEffect(() => {
@@ -56,12 +57,13 @@ export const AlbumDisplay = ( ) => {
 
     
     return <>
+        <h1 style = {{marginTop :'30px'}}> {albumInfo.name} </h1>
         <img src={albumInfo.images[0].url} style={{ width: '300px', height: '300px', marginBottom: '50px',marginTop: '50px' }} />
          <ListGroup defaultActiveKey="#link1">
         {
             albumSongs.map((song) => {
             return (
-                <SongBar name={song.name} url = {song.external_urls.spotify} ms={song.duration_ms} />
+                <SongBar name={song.name} artist={albumInfo.artists[0].name} url = {song.external_urls.spotify} ms={song.duration_ms} />
             )
         })}
         </ListGroup>

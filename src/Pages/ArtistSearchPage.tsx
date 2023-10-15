@@ -13,7 +13,7 @@ export const ArtistSearchPage = () => {
 
     return (
     <div>
-        <h1>{searchInput}</h1>
+        <h1 style = {{marginTop :'30px', marginBottom :'30px'}}>Album Lookup</h1>
         <Container>
             <FormControl
                 placeholder='Search for artist'
@@ -28,7 +28,7 @@ export const ArtistSearchPage = () => {
                 }
                 }
             />
-            <Button variant="success" onClick={() => { getArtistId(searchInput, accessToken).then((result)=> setArtistId(result))}}>
+            <Button style = {{marginTop :'30px', marginBottom :'30px'}} variant="success" onClick={() => { getArtistId(searchInput, accessToken).then((result)=> setArtistId(result))}}>
             Enter
             </Button>
         </Container>
