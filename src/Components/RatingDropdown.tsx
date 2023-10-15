@@ -1,6 +1,9 @@
 import { InputGroup, Form, DropdownButton, Dropdown, Button } from "react-bootstrap"
 import { ChangeEvent, SetStateAction, useState } from "react";
-import { useSendRatingToDb } from "../DB/senderHelpers/sendRatingToDB";
+import { sendRatingToDb } from "../DB/senderHelpers/sendRatingToDB";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../Configs/firebase";
+import { User } from "firebase/auth";
 
 type RatingDropdownProps = {
     albumId: string;
@@ -9,6 +12,7 @@ type RatingDropdownProps = {
 export const RatingDropdown = ({ albumId }:RatingDropdownProps) => {
     const [inputValue, setInputValue] = useState("");
     const options = [];
+    const [user] = useAuthState(auth);
 
     for (let i = 10; i >= 1; i--) {
         options.push(
@@ -29,8 +33,8 @@ export const RatingDropdown = ({ albumId }:RatingDropdownProps) => {
         setInputValue(ratingNum);
     }
 
-    const useSubmitBtnClicked = () => {
-        useSendRatingToDb(parseInt(inputValue),albumId);
+    const submitBtnClicked = () => {
+        sendRatingToDb(parseInt(inputValue),albumId, user as User);
     }
 
     return (
@@ -51,7 +55,7 @@ export const RatingDropdown = ({ albumId }:RatingDropdownProps) => {
             onChange= {handleOnInputChange}
             />
 
-            <Button onClick={useSubmitBtnClicked}>Submit</Button>
+            <Button onClick={submitBtnClicked}>Submit</Button>
           </InputGroup>
     </>
     );
