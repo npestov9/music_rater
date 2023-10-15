@@ -6,21 +6,34 @@ import { useState, useEffect } from 'react';
 import { NupupNavBar } from './Components/NupupNavBar';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { AlbumDisplay } from './Pages/AlbumDisplay';
-
+import { APIContext } from './Configs/context';
+import { useToken } from './APIs/getAccessToken';
 
 
 function App() {
-  useEffect (()=> {
-    
-  }, []);
+
+  const accessToken = useToken();
+  const [apiReady, setApiReady] = useState(false);
+
+  useEffect(() => {
+    if (accessToken) {
+      setApiReady(true);
+    }
+  }, [accessToken]);
 
   return (
     <div className="App">
-        <NupupNavBar />
-        <Routes>
-          <Route path="/" element={<ArtistSearchPage />} />
-          <Route path="/albumSongs/:albumId" element={<AlbumDisplay />} />
-        </Routes>
+      <NupupNavBar />
+      {apiReady ? (
+        <APIContext.Provider value={accessToken as string}>
+          <Routes>
+            <Route path="/" element={<ArtistSearchPage />} />
+            <Route path="/albumSongs/:albumId" element={<AlbumDisplay />} />
+          </Routes>
+        </APIContext.Provider>
+      ) : (
+        <div>Loading...</div>
+      )}
     </div>
   );
 }

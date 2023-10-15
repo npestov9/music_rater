@@ -32,7 +32,7 @@ export const ArtistSearchPage = () => {
             Enter
             </Button>
         </Container>
-        <ArtistAlbums artistId={artistId} accessToken={accessToken} />
+        <ArtistAlbums artistId={artistId} />
         </div>
     );
 }

@@ -7,6 +7,7 @@ export const useToken = () => {
     const [accessToken, setAccessToken] = useState("");
 
     useEffect(() => {
+
         const fetchToken = async () => {
             //API token on first load
             var authParams = {
@@ -22,12 +23,14 @@ export const useToken = () => {
             setAccessToken(data.access_token);
             console.log(`My token: ${data.access_token}`);
         }
+
+        if (accessToken !== undefined) {
+            fetchToken();
+        }
         
-        fetchToken();
-    }, []);
+    },[]);
 
     if (accessToken) {
-        
         return accessToken;
     }
 }

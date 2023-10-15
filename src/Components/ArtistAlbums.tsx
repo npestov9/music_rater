@@ -1,10 +1,10 @@
 import { Container, InputGroup, FormControl, Button, Row, Card } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ArtistCard } from './ArtistCard';
+import { APIContext, useAPIContext } from '../Configs/context';
 
 type Props = {
   artistId: string;
-  accessToken: string;
 };
 
 type Album = {
@@ -18,9 +18,10 @@ type Image = {
   width: number;
 };
 
-export const ArtistAlbums = ({ artistId, accessToken }: Props) => {
+export const ArtistAlbums = ({ artistId }: Props) => {
     
     const [albums, setAlbums] = useState<Album[]>([]);
+    const accessToken = useAPIContext();
 
     useEffect(() => {
         async function storeAlbumData() {
