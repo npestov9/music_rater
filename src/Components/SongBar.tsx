@@ -2,6 +2,7 @@ import { ListGroup } from "react-bootstrap";
 import spotifyIcon from "../Images/spotify-icon.webp";
 import youtubeIcon from "../Images/youtube-icon.png";
 import { goToYtLink } from "../APIs/goToYtLink";
+import { RatingDropdown } from "./RatingDropdown";
 
 const iconsStyle = {
     width: '50px', // Set the width as per your requirement
@@ -34,7 +35,8 @@ export const SongBar = ({ name,artist, url, ms }: Props) => {
             
             {name}   -  {minutes}:{seconds}
             <img src={spotifyIcon} alt="Icon" style={iconsStyle} onClick={() => { window.open(url, '_blank'); }} />
-            <img src={youtubeIcon} alt="Icon" style={iconsStyle} onClick={() => { goToYtLink(name, artist)}} />
+            <img src={youtubeIcon} alt="Icon" style={iconsStyle} onClick={() => { goToYtLink(name, artist) }} />
+
         </ListGroup.Item>
     </>
 }

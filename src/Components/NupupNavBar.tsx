@@ -1,8 +1,11 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { GoogleLoginBtn } from './GoogleLoginBtn';
 
-export const NupupNavBar= ()=> {
+export const NupupNavBar = () => {
   return (
     <>
       <br />
@@ -13,6 +16,11 @@ export const NupupNavBar= ()=> {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/albumSongs/78iX7tMceN0FsnmabAtlOC">Album songs</Nav.Link>
             <Nav.Link href="#pricing">Pricing</Nav.Link>
+          </Nav>
+          <Nav>
+            <Nav.Item>
+              <GoogleLoginBtn/>
+            </Nav.Item>
           </Nav>
         </Container>
       </Navbar>

@@ -28,7 +28,7 @@ export const ArtistSearchPage = () => {
                 }
                 }
             />
-            <Button style = {{marginTop :'30px', marginBottom :'30px'}} variant="success" onClick={() => { getArtistId(searchInput, accessToken).then((result)=> setArtistId(result))}}>
+                <Button size="lg" style={{ marginTop: '30px', marginBottom: '30px' }} variant="success" onClick={() => { if (searchInput !== "") { getArtistId(searchInput, accessToken).then((result) => setArtistId(result)) } }}>
             Enter
             </Button>
         </Container>

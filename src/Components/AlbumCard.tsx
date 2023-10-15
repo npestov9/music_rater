@@ -1,4 +1,5 @@
 import { Container, InputGroup, FormControl, Button, Row, Card } from 'react-bootstrap';
+import { RatingDropdown } from './RatingDropdown';
 
 type Props = {
   title: string;
@@ -6,12 +7,13 @@ type Props = {
   albumId: string
 };
 
-export const ArtistCard = ({ title, img , albumId}: Props) => {
+export const AlbumCard = ({ title, img , albumId}: Props) => {
     return (
         <Card>
             <Card.Img src={img} onClick={()=>window.open(window.location.origin + `/albumSongs/${albumId}`, '_blank')}/>
             <Card.Body />
-            <Card.Title>{title}</Card.Title>
+        <Card.Title>{title}</Card.Title>
+          <RatingDropdown/>
           </Card>
     )
 }
