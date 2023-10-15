@@ -2,7 +2,6 @@ import { ListGroup } from "react-bootstrap";
 import spotifyIcon from "../Images/spotify-icon.webp";
 import youtubeIcon from "../Images/youtube-icon.png";
 import { goToYtLink } from "../APIs/goToYtLink";
-import { RatingDropdown } from "./RatingDropdown";
 
 const iconsStyle = {
     width: '50px', // Set the width as per your requirement

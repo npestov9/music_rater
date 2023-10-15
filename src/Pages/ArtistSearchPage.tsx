@@ -13,10 +13,10 @@ export const ArtistSearchPage = () => {
 
     return (
     <div>
-        <h1 style = {{marginTop :'30px', marginBottom :'30px'}}>Album Lookup</h1>
+        <h1 style = {{marginTop :'30px', marginBottom :'30px'}}>Search For Artist</h1>
         <Container>
             <FormControl
-                placeholder='Search for artist'
+                placeholder='Artist name...'
                 type = 'input'
                 onKeyPress={(event)=> {
                 if (event.key == "Enter") {

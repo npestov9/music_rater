@@ -13,7 +13,7 @@ export const AlbumCard = ({ title, img , albumId}: Props) => {
             <Card.Img className="interactiveImage" src={img} onClick={()=>window.open(window.location.origin + `/albumSongs/${albumId}`, '_blank')}/>
             <Card.Body />
         <Card.Title>{title}</Card.Title>
-          <RatingDropdown/>
+        <RatingDropdown albumId={albumId}/>
           </Card>
     )
 }

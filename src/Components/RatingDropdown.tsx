@@ -1,7 +1,12 @@
-import { InputGroup, Form, DropdownButton, Dropdown } from "react-bootstrap"
+import { InputGroup, Form, DropdownButton, Dropdown, Button } from "react-bootstrap"
 import { ChangeEvent, SetStateAction, useState } from "react";
+import { useSendRatingToDb } from "../DB/senderHelpers/sendRatingToDB";
 
-export const RatingDropdown = () => {
+type RatingDropdownProps = {
+    albumId: string;
+}
+
+export const RatingDropdown = ({ albumId }:RatingDropdownProps) => {
     const [inputValue, setInputValue] = useState("");
     const options = [];
 
@@ -19,20 +24,18 @@ export const RatingDropdown = () => {
             setInputValue(value);
         }
     }
-
+    
     const handleOnDropDownElementClicked = (ratingNum: string)=>{
         setInputValue(ratingNum);
     }
 
+    const useSubmitBtnClicked = () => {
+        useSendRatingToDb(parseInt(inputValue),albumId);
+    }
+
     return (
         <>
-      <InputGroup className="mb-3">
-        <Form.Control
-            aria-label="Text input with dropdown button"
-            value = {inputValue}
-            onChange= {handleOnInputChange}
-            />
-
+        <InputGroup className="mb-3">
         <DropdownButton
           variant="outline-secondary"
           title="Rating"
@@ -42,6 +45,13 @@ export const RatingDropdown = () => {
         {options}
 
         </DropdownButton>
+        <Form.Control
+            aria-label="Text input with dropdown button"
+            value = {inputValue}
+            onChange= {handleOnInputChange}
+            />
+
+            <Button onClick={useSubmitBtnClicked}>Submit</Button>
           </InputGroup>
     </>
     );
