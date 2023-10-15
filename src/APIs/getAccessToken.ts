@@ -21,7 +21,6 @@ export const useToken = () => {
             const result = await fetch("https://accounts.spotify.com/api/token", authParams);
             const data = await result.json();
             setAccessToken(data.access_token);
-            console.log(`My token: ${data.access_token}`);
         }
 
         if (accessToken !== undefined) {
