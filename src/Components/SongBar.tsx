@@ -34,8 +34,8 @@ export const SongBar = ({ name,artist, url, ms }: Props) => {
         <ListGroup.Item style={listItemStyle}>
             
             {name}   -  {minutes}:{seconds}
-            <img src={spotifyIcon} alt="Icon" style={iconsStyle} onClick={() => { window.open(url, '_blank'); }} />
-            <img src={youtubeIcon} alt="Icon" style={iconsStyle} onClick={() => { goToYtLink(name, artist) }} />
+            <img className="interactiveImage" src={spotifyIcon} alt="Icon" style={iconsStyle} onClick={() => { window.open(url, '_blank'); }} />
+            <img className="interactiveImage" src={youtubeIcon} alt="Icon" style={iconsStyle} onClick={() => { goToYtLink(name, artist) }} />
 
         </ListGroup.Item>
     </>

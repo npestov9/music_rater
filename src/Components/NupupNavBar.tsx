@@ -8,14 +8,13 @@ import { GoogleLoginBtn } from './GoogleLoginBtn';
 export const NupupNavBar = () => {
   return (
     <>
-      <br />
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">Nupup inc.</Navbar.Brand>
+          <Navbar.Brand href="/">Album Rater</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/albumSongs/78iX7tMceN0FsnmabAtlOC">Album songs</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <Nav.Link href="/">Album Lookup</Nav.Link>
+            <Nav.Link href="/yourRatedAlbums">Your Rated Albums</Nav.Link>
+            <Nav.Link href="/bestAlbums">Global Ratings</Nav.Link>
           </Nav>
           <Nav>
             <Nav.Item>

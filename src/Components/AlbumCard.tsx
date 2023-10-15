@@ -10,7 +10,7 @@ type Props = {
 export const AlbumCard = ({ title, img , albumId}: Props) => {
     return (
         <Card>
-            <Card.Img src={img} onClick={()=>window.open(window.location.origin + `/albumSongs/${albumId}`, '_blank')}/>
+            <Card.Img className="interactiveImage" src={img} onClick={()=>window.open(window.location.origin + `/albumSongs/${albumId}`, '_blank')}/>
             <Card.Body />
         <Card.Title>{title}</Card.Title>
           <RatingDropdown/>

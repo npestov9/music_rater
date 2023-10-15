@@ -3,14 +3,14 @@ import { Button } from "react-bootstrap";
 
 import { auth, provider } from "../Configs/firebase"
 import { signInWithPopup } from "firebase/auth";
+import {useAuthState} from "react-firebase-hooks/auth"
 
 export const GoogleLoginBtn = () => {
-    const [isLoggenIn, setIsLoggenIn] = useState(false);
+    const [user] = useAuthState(auth);
 
     const signInWithGoogle = async () => {
         try {
             const result = await signInWithPopup(auth, provider);
-            setIsLoggenIn(true);
         }
         catch {
             
@@ -19,13 +19,13 @@ export const GoogleLoginBtn = () => {
     }
     return (
     <>
-        {auth.currentUser && (
+        {user && (
         <div style={{ display: 'flex', alignItems: 'center' }}>
-            <h5 style={{ color: 'white', marginRight: '10px' }}>{auth.currentUser?.displayName}</h5>
-            <img src={auth.currentUser?.photoURL || ""} width='50px' height='50px' />
+            <h5 style={{ color: 'white', marginRight: '10px' }}>{user?.displayName}</h5>
+            <img src={user?.photoURL || ""} width='50px' height='50px' />
         </div>
         )}
-        {!auth.currentUser && <Button onClick={signInWithGoogle}> Sign in with Google </Button>}
+        {!user && <Button onClick={signInWithGoogle}> Sign in with Google </Button>}
     </>
     );
 

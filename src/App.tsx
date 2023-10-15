@@ -8,7 +8,8 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { AlbumDisplay } from './Pages/AlbumDisplay';
 import { APIContext } from './Configs/context';
 import { useToken } from './APIs/getAccessToken';
-
+import { BestAlbums } from './Pages/BestAlbums';
+import { YourRatedAlbums } from './Pages/YourRatedAlbums';
 
 function App() {
 
@@ -29,6 +30,8 @@ function App() {
           <Routes>
             <Route path="/" element={<ArtistSearchPage />} />
             <Route path="/albumSongs/:albumId" element={<AlbumDisplay />} />
+            <Route path="/yourRatedAlbums" element={<YourRatedAlbums />} />
+            <Route path="/bestAlbums" element={<BestAlbums />} />
           </Routes>
         </APIContext.Provider>
       ) : (
