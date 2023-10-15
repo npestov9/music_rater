@@ -1,31 +1,33 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-type Props = {
-  album: string;
-  albumImg: string;
-};
+export const AlbumDisplay = ( ) => {
 
-export const AlbumDisplay = () => {
-    //TODO: complete the page
-    return <div> NOTHING HERE YET</div>
-//     useEffect(() => {
-//     async function getAlbumTracks() {
-//         var searchParams = {
-//             method: "GET",
-//             headers: {
-//                 "Content-Type": "application/json",
-//                 "Authorization": "Bearer " + accessToken
-//             },
-//         }
-
-//         const returnedAlbums = await fetch("https://api.spotify.com/v1/artists/"+artistId+"/albums"+"?include_groups=album&market=US&limit=50", searchParams)
-//             .then((data) => data.json())
-//             .then((res) => {setAlbums(res.items); return res.items })
-        
-//         console.log(returnedAlbums);
-//     }
-
-//     getAlbumTracks();
+    const { albumId } = useParams();
     
-// }, [artistId])
+    const [allSongs, setAllSongs] = useState([])
+
+    useEffect(() => {
+        
+    async function getAlbumTracks() {
+        var searchParams = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                // "Authorization": "Bearer " + accessToken
+            },
+        }
+
+        const returnedAlbums = await fetch(`https://api.spotify.com/v1/albums/${albumId}/tracks`, searchParams)
+            .then((data) => data.json())
+            .then((res) => {setAllSongs(res.items); return res.items })
+        
+        console.log(returnedAlbums);
+    }
+
+    getAlbumTracks();
+    
+    }, [])
+    
+    return <>PENIS { albumId}</>
 }
